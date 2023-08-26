@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <title> SECLECTING DIFFERENT ELEMENTS USING DOM</title>
+</head>
+<body>
+    <h1>DOM Methods Example</h1>
+  <div class="container">
+    <div class="Id">
+        <div class="Id-el">
+            
+             <div id="example-id" style="color: aliceblue;">SAKAMOTO DAYS</div>
+        </div>
+        <div class="button">
+            <button id="id-button">Toggle Background Color</button>
+        </div>
+        
+    </div>
+        <div class="Class">
+          <div class="wrapper">
+              <p class="example-class" style="color: aliceblue;">SAKAMOTO DAYS</p>
+              <img class="example-class" src="Sakamoto.jpg" alt="Example Image 1">
+             
+          </div>
+            <button class="class-button">Toggle Border</button>
+    </div>
+    
+    <div class="tag">
+                <h2 style="color:aliceblue">THE ORDER</h2>
+                <h3> Nagumo </h3>
+                <h3>Shishiba</h3>
+                <h3>Osaragi</h3>
+                        <button id="tag-button">Change Heading Color</button>
+                    <div class="bytag">Element by Tag</div>
+            <button id="selector-button">Toggle Border</button>
+    </div>
+
+    <div class="link">
+            <button id="generate-link-button">Generate YouTube Link</button>
+        <p id="youtube-link"></p>
+    </div>
+
+
+  </div>
+
+
+<script>
+  // Get Element by ID
+  const elementById = document.getElementById('example-id');
+  const idButton = document.getElementById('id-button');
+  idButton.addEventListener('click', function() {
+    elementById.style.backgroundColor = elementById.style.backgroundColor === 'orange' ? '' : 'orange';
+  });
+
+  // Get Elements by Classname
+  const elementsByClass = document.getElementsByClassName('example-class');
+  const classButtons = document.querySelectorAll('.class-button');
+  classButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      for (let i = 0; i < elementsByClass.length; i++) {
+        elementsByClass[i].style.border = elementsByClass[i].style.border ? '' : '4px solid orange';
+      }
+    });
+  });
+
+  // Get Headings by Tag
+  const headingsByTag = document.getElementsByTagName('h3');
+  const tagButton = document.getElementById('tag-button');
+  let tagColorChanged = false;
+  tagButton.addEventListener('click', function() {
+    const newColor = tagColorChanged ? 'orange' : 'White';
+    for (let i = 0; i < headingsByTag.length; i++) {
+      headingsByTag[i].style.color = newColor;
+    }
+    tagColorChanged = !tagColorChanged;
+  });
+
+  // Get Element by Selector
+  const elementBySelector = document.querySelector('div');
+  const selectorButton = document.getElementById('selector-button');
+  selectorButton.addEventListener('click', function() {
+    elementBySelector.style.border = elementBySelector.style.border ? '' : '5px dashed orange';
+  });
+
+  // Generate YouTube Link
+  const generateLinkButton = document.getElementById('generate-link-button');
+  generateLinkButton.addEventListener('click', function() {
+    const youtubeLink = 'https://www.youtube.com/watch?v=_5nG80ql44o';
+    const youtubeLinkParagraph = document.getElementById('youtube-link');
+    youtubeLinkParagraph.innerHTML = '<a href="' + youtubeLink + '" target="_blank">Visit YouTube</a>';
+  });
+</script>
+</body>
+</html>
